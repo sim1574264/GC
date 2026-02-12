@@ -1,4 +1,4 @@
-package métier;
+package metier;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

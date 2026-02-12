@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import antlr.collections.List;
-import métier.Produit;
-import métier.Traitements;
+
+import metier.Produit;
+import metier.Traitements;
 
 /**
  * Servlet implementation class Produits

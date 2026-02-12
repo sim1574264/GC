@@ -1,4 +1,4 @@
-package métier;
+package metier;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

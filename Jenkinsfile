@@ -1,39 +1,43 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()
-    }
+    triggers { githubPush() }
 
     stages {
-
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/sim1574264/GC'
+                git branch: 'main', url: 'https://github.com/sim1574264/cargo-tracker-UM6P1.git'
             }
         }
 
-        stage('Build + SonarQube Analysis') {
+        stage('Build + SonarCloud Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat '''
-                        mvnw.cmd -B clean install -DskipTests ^
+                withSonarQubeEnv('SonarCloud') {
+                    bat """
+                        mvn -B clean verify ^
                           org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar ^
-                          -Dsonar.projectKey=GC ^
-                          -Dsonar.projectName="GC" ^
-                          -Dsonar.host.url=http://localhost:9000
-                    '''
+                          -Dsonar.host.url=https://sonarcloud.io ^
+                          -Dsonar.organization=minssin
+ ^
+                          -Dsonar.projectKey=minssin-GC ^
+                          -Dsonar.projectName="GC"
+                    """
+                }
+            }
+        }
+
+        // Optionnel: faire échouer le pipeline si Quality Gate KO
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
     }
 
     post {
-        success {
-            echo 'Build et analyse terminés avec succès !'
-        }
-        failure {
-            echo 'Échec du build ou de l’analyse.'
-        }
+        success { echo 'Build et analyse SonarCloud OK !' }
+        failure { echo 'Échec du build / tests / analyse.' }
     }
 }

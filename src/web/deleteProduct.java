@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import métier.Traitements;
+import metier.Traitements;
 
 /**
  * Servlet implementation class deleteProduct

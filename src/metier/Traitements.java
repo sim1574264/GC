@@ -1,4 +1,4 @@
-package métier;
+package metier;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,8 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 
 public class Traitements {
 	
