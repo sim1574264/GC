@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build + SonarCloud Analysis') {
             steps {
-                withSonarQubeEnv('SonarCloud') {
+                withSonarQubeEnv('SonarQube') {
                     bat """
                         mvn -B clean verify ^
                           org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar ^
